@@ -3,12 +3,15 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import authRoutes from "./routes/authRoute";
+import authorRoutes from "./routes/authorRoute";
+import postRoutes from "./routes/postRoute";
 
 const app = express();
 dotenv.config();
 app.use(express.json());
 
 app.use("/auth", authRoutes);
+app.use("/post", postRoutes);
 
 const PORT = process.env.PORT || 6000;
 

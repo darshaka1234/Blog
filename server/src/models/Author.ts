@@ -1,14 +1,8 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema(
+const AuthorSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-      min: 2,
-      max: 50,
-    },
-    lastName: {
+    name: {
       type: String,
       required: true,
       min: 2,
@@ -29,5 +23,5 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", UserSchema);
-export default User;
+const Author = mongoose.model("Author", AuthorSchema);
+export default Author;

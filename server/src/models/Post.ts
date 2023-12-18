@@ -1,30 +1,16 @@
 import mongoose from "mongoose";
+import Author from "./Author";
 
 const postSchema = new mongoose.Schema(
   {
-    userId: {
+    title: {
       type: String,
       required: true,
     },
-    firstName: {
+    author: [Author.schema],
+    summary: {
       type: String,
       required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    location: String,
-    description: String,
-    picturePath: String,
-    userPicturePath: String,
-    likes: {
-      type: Map,
-      of: Boolean,
-    },
-    comments: {
-      type: Array,
-      default: [],
     },
   },
   { timestamps: true }
