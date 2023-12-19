@@ -14,7 +14,7 @@ app.use(helmet());
 app.use(cors());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(express.json());
-app.use(morgan("combined"));
+app.use(morgan("common"));
 
 //routes
 app.use("/auth", authRoutes);

@@ -7,8 +7,15 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    author: [Author.schema],
-    summary: {
+    authorId: {
+      type: String,
+      required: true,
+    },
+    authorName: {
+      type: String,
+      required: true,
+    },
+    content: {
       type: String,
       required: true,
     },

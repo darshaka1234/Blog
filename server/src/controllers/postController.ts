@@ -3,13 +3,15 @@ import Author from "../models/Author";
 
 export const createPost = async (req, res) => {
   try {
-    const { authorId, title, summary } = req.body;
+    const { authorId, title, content } = req.body;
     const postAuthor = await Author.findById(authorId);
+    console.log(postAuthor.name);
 
     const newPost = new Post({
       title: title,
-      author: postAuthor,
-      summary: summary,
+      authorId: authorId,
+      authorName: postAuthor.name,
+      content: content,
     });
     await newPost.save();
 
@@ -42,11 +44,11 @@ export const getPost = async (req, res) => {
 export const updatePost = async (req, res) => {
   try {
     const { Id } = req.params;
-    const { title, summary } = req.body;
+    const { title, content } = req.body;
 
     const updatedPost = await Post.findByIdAndUpdate(Id, {
       title: title,
-      summary: summary,
+      content: content,
     });
 
     res.status(200).json(updatedPost);

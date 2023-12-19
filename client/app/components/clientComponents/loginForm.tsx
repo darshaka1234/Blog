@@ -5,20 +5,20 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const router = useRouter();
-
   const [data, setData] = useState({
-    name: "",
     email: "",
     password: "",
   });
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5001/auth/register", data);
+      const res = await axios.post("http://localhost:5001/auth/login", data);
       if (res) {
-        router.replace("/auth/login");
+        sessionStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("authorId", res.data.author._id);
+        router.replace("/post");
       }
     } catch (err) {
       console.log(err);
@@ -28,26 +28,10 @@ const RegisterForm = () => {
   const handleChange = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-
   return (
     <div>
-      <h1 className="font-bold text-3xl mb-5">Register To MEDIA</h1>
-      <form
-        className="flex flex-col gap-5 mb-3"
-        onSubmit={handleSubmit}
-        method="post"
-      >
-        <div className="flex flex-col gap-2">
-          <label htmlFor="name">Full Name</label>
-          <input
-            type="text"
-            placeholder="Full Name"
-            name="name"
-            value={data.name}
-            onChange={handleChange}
-            className="input input-bordered w-full max-w-xs"
-          />
-        </div>
+      <h1 className="font-bold text-3xl mb-5">Login To Your account</h1>
+      <form className="flex flex-col gap-5 mb-3" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Email</label>
           <input
@@ -71,17 +55,17 @@ const RegisterForm = () => {
           />
         </div>
         <button type="submit" className="btn btn-active btn-neutral">
-          Register
+          Login
         </button>
       </form>
       <div className="flex justify-center gap-2">
-        <p className="">{`Already have an account?`}</p>
-        <Link href="/auth/login">
-          <button className="text-blue-700">Login</button>
+        <p className="">{`Don't have an account?`}</p>
+        <Link href="/auth/register">
+          <button className="text-blue-700">Register</button>
         </Link>
       </div>
     </div>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

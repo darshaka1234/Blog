@@ -1,5 +1,5 @@
 import Animation from "../../components/clientComponents/animation";
-import RegisterForm from "@/app/components/registerForm";
+import RegisterForm from "@/app/components/clientComponents/registerForm";
 
 const RegisterPage = () => {
   return (
