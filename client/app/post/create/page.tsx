@@ -3,19 +3,19 @@
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const CretePost = () => {
   const [data, setData] = useState({ title: "", content: "" });
   const router = useRouter();
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleEditor = (newContent: string) => {
     setData({ ...data, content: newContent });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const allData = { ...data, authorId: sessionStorage.getItem("authorId") };
     try {

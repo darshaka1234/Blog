@@ -3,7 +3,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:5001/auth/login", data);
@@ -25,7 +25,7 @@ const LoginForm = () => {
     }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   return (

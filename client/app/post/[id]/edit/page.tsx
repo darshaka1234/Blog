@@ -3,7 +3,7 @@
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import { useRouter, redirect } from "next/navigation";
-import { useLayoutEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useLayoutEffect, useState } from "react";
 
 const EditPost = () => {
   const [data, setData] = useState({
@@ -14,7 +14,7 @@ const EditPost = () => {
   });
 
   const router = useRouter();
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleEditor = (newContent: string) => {
@@ -43,7 +43,7 @@ const EditPost = () => {
     getPosts();
   }, [router]);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const url = window.location.pathname;
     const id = url.match(/\/post\/(.*?)\/edit/);

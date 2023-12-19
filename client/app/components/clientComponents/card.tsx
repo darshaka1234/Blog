@@ -12,14 +12,14 @@ const Card = ({ post }: { post: PostType }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-base-100 shadow-xl my-5 max-h-96">
       <div className="card-body">
         <h2 className="card-title">{post.title}</h2>
-        <Renderhtml htmlContent={post.content} classname="" />
+        <Renderhtml htmlContent={post.content} classname="h-[30%] truncate" />
         <div className="flex justify-between">
-          <p>{post.authorName}</p>
+          <h4 className="font-medium">{`Author :  ${post.authorName}`}</h4>
           <div className="card-actions justify-end">
-            <button onClick={handleClick} className="btn btn-neutral">
+            <button onClick={handleClick} className="btn btn-sm btn-neutral">
               Read more...
             </button>
           </div>
